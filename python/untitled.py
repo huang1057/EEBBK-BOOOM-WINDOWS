@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
-import os
 import subprocess
+import os
 
 def open_exe():
     try:
@@ -11,9 +11,31 @@ def open_exe():
     except Exception as e:
         messagebox.showerror("错误", f"无法打开文件: {e}")
 
+def center_window(root):
+    # 获取屏幕的宽度和高度
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+
+    # 获取窗口的宽度和高度
+    window_width = root.winfo_reqwidth()
+    window_height = root.winfo_reqheight()
+
+    # 计算窗口位置，使窗口居中
+    x = (screen_width - window_width) // 2
+    y = (screen_height - window_height) // 2
+
+    # 设置窗口位置
+    root.geometry(f"+{x}+{y}")
+
 def create_gui():
     root = tk.Tk()
     root.title("免责声明")
+
+    # 设置窗口的初始大小
+    root.geometry("600x400")  # 你可以根据需要修改这些值
+
+    # 调用函数以居中窗口
+    center_window(root)
 
     disclaimer = tk.Text(root, height=15, width=50)
     disclaimer.insert(tk.END, """### 免责声明
